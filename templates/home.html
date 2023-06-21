@@ -1,0 +1,34 @@
+<!-- box model in css:
+from outer to inner space, we have the following layers:
+    1. margin
+    2. border
+    3. padding
+    4. text (or content) -->
+{% extends "base.html" %}
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'home.css') }}">
+{% endblock %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <div id="intro">
+        This app has been developed for the purpose of visualizing the separation of classes done by decision trees. For this app, you can use up to 5 classes in total for visualization. Classes are:
+        <ul>
+            <li>Yellow</li>
+            <li>Cyan</li>
+            <li>Green</li>
+            <li>Orange</li>
+            <li>Red</li>
+        </ul>
+        
+    </div>
+    <div id="plot_visual">
+        <canvas id="canvas" onclick="plot_point(event)"></canvas>
+        <button id="change_class" onclick="change_class()">Change</button>
+        <button id="clear_canvas" onclick="clear_canvas()">Clear</button>
+        <button id="run_tree" onclick="run_tree()">Run</button>
+    </div>
+    <script src="../static/home.js"></script>
+{% endblock %}
+
