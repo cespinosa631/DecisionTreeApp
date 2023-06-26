@@ -1,15 +1,20 @@
 const classes = ['yellow', 'cyan', 'green', 'orange', 'red'];
 var idx = 0;
 var k = 5;
-
+url = 'http://127.0.0.1:5000'
+var data = {
+    'yellow':[],
+    'cyan':[],
+    'green':[],
+    'orange':[],
+    'red':[]
+};
 
 function plot_point(event){
     const canvas = document.getElementById("canvas");
     var rect = canvas.getBoundingClientRect();
     var x = event.pageX - rect.left - scrollX;
     var y = event.pageY - rect.top - scrollY;
-    console.log("x: ", x, "y: ", y);
-    console.log("window.ScrollX: ", window.scrollX, "window.scrollY: ", window.scrollY);
 
     // Normalizing (x, y) cooridnates
     x /= rect.width;
@@ -19,6 +24,8 @@ function plot_point(event){
     x *= canvas.width;
     y *= canvas.height;
     
+    console.log("Points:\nx: ", x, "\ny: ", y);
+
     drawCoordinates(canvas, x, y);
 }
 
@@ -32,6 +39,10 @@ function drawCoordinates(canvas, x,y){
     ctx.beginPath(); //Start path
     ctx.arc(x, y, pointSize, 0, 1, true); // Draw a point using the arc function of the canvas with a point structure.
     ctx.fill(); // Close the path and fill.
+
+    // store point coordinate
+    data[classes[idx]].push([x,y]);
+    console.log('updatding data...\n', data);
 }
 
 
@@ -47,9 +58,24 @@ function change_class(){
 function clear_canvas(){
     const context = canvas.getContext('2d');
     context.clearRect(0, 0, canvas.width, canvas.height);
+
+    // clear data points
+    for(let i = 0; i < Object.keys(data).length; i++){
+        data[classes[i]] = [];
+    }
+    console.log('data has been cleared: ', data)
 }
 
 function run_tree(){
-    request = new XMLHttpRequest();
-
+    // making request to run decision tree model in server
+    let request = new XMLHttpRequest();
+    request.open('POST', url, true);
+    request.responseType = 'json';
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.onload = function(){
+        if(request.status >=200 && request.status < 400){
+            // unpack decision tree visualization
+        }
+    }
+    request.send(JSON.stringify(data));
 }
