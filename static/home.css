@@ -5,8 +5,8 @@
 
 
 #canvas{
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    height: 100%;
     /* margin-left: 50vw; */
     border: 3px solid orange;
     position: center;
@@ -18,9 +18,55 @@
     display: flex;
     border: 3px solid green;
     align-items: center;
+    height: 100%;
 }
 
 #change_class{
     background-color: yellow;
+}
 
+
+.content{
+    float: right;
+    float: bottom;
+    width: 73%;
+    border: 3px solid yellow;
+    height: 100%;
+}
+
+.sidebar{
+    float: left;
+    float: top;
+    width: 25%;
+    height:100%;
+    border: 3px solid cyan;
+}
+
+.buttons{
+    position: relative;
+    flex: bottom;
+    border: 3px solid green;
+    top: 100%;
+
+}
+
+button{
+    border: 3px solid #e1e3e4;
+    border-radius: 1rem;
+    width: 80%;
+    height: 25%;
+    font-size: x-large;
+    top: 100%;
+    left: 50%;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #ffffff;
+    color: black;
+}
+
+button:active{
+    background-color: black;
+    color: white;
 }

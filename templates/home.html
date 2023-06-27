@@ -22,14 +22,25 @@ from outer to inner space, we have the following layers:
             <li>Red</li>
         </ul>
         Once you finished plotting the points in the canvas, click on run to see the visualization of separation of classes
+    </div>
+
+    <div class="sidebar">
+        <p id="sidebar_dexcription">This is the sidebar to change model and hyperparameters</p>
+        <div class="buttons">
+            <button id="change_class" onclick="change_class()">Change</button>
+            <button id="clear_canvas" onclick="clear_canvas()">Clear</button>
+            <button id="run_tree" onclick="run_tree()">Run</button>
+        </div>
+    </div>
+    
+    <div class="content">
         
+        <div id="plot_visual">
+            <canvas id="canvas" onclick="plot_point(event)"></canvas>
+            
+        </div>
+        <script src="../static/home.js"></script>
     </div>
-    <div id="plot_visual">
-        <canvas id="canvas" onclick="plot_point(event)"></canvas>
-        <button id="change_class" onclick="change_class()">Change</button>
-        <button id="clear_canvas" onclick="clear_canvas()">Clear</button>
-        <button id="run_tree" onclick="run_tree()">Run</button>
-    </div>
-    <script src="../static/home.js"></script>
+
 {% endblock %}
 
